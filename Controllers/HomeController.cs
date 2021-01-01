@@ -35,8 +35,11 @@ namespace NetCore3_1_Cookie_Authenticaion.Controllers
         {
             var name = User.Claims.Where(c => c.Type == ClaimTypes.Name)
                   .Select(c => c.Value).SingleOrDefault();
+            var claim = User.Identities;
+             
+            var type = User.Identity.AuthenticationType;
 
-            ViewBag.param = name;
+            ViewBag.param ="Login Name : " +  name + " Type : " + type;
             return View("Kullanici");
             }
 
@@ -44,7 +47,7 @@ namespace NetCore3_1_Cookie_Authenticaion.Controllers
         public IActionResult Privacy()
             {
                 return View();
-            set
+    
             }
 
             [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
